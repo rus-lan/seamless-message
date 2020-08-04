@@ -1,0 +1,36 @@
+services:
+    rl.seamless_message.security:
+        class: '%rl.seamless_message.security%'
+        arguments:
+            - '@router'
+            - '%rl.seamless_message.save_log%'
+        calls:
+            - [setTranslator, ['@translator']]
+            - [setEntityManager, ['@doctrine.orm.entity_manager']]
+            - [setRepository, ['@rl.seamless_message.repository.user']]
+
+    rl.seamless_message.loader:
+        class: '%rl.seamless_message.loader%'
+        tags: [routing.loader]
+
+    rl.seamless_message.provider.user:
+        class: '%rl.seamless_message.provider.user%'
+        calls:
+            - [setEntityManager, ['@doctrine.orm.entity_manager']]
+    rl.seamless_message.provider.history:
+        class: '%rl.seamless_message.provider.history%'
+        calls:
+            - [setEntityManager, ['@doctrine.orm.entity_manager']]
+
+    rl.seamless_message.repository.user:
+        class: '%rl.seamless_message.repository.user%'
+        arguments: ['@doctrine.orm.entity_manager']
+        tags: [doctrine.repository_service]
+    rl.seamless_message.repository.messages:
+        class: '%rl.seamless_message.repository.messages%'
+        arguments: ['@doctrine.orm.entity_manager']
+        tags: [doctrine.repository_service]
+
+    rl.seamless_message.controller.default:
+        class: '%rl.seamless_message.controller.default%'
+        tags: [controller.service_arguments

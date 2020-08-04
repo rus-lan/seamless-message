@@ -1,0 +1,17 @@
+parameters:
+    #options
+    rl.seamless_message.save_log: true
+
+    #classes
+    rl.seamless_message.loader: RusLan\SeamlessMessage\Bundle\Routing\SeamlessMessageLoader
+    rl.seamless_message.security: RusLan\SeamlessMessage\Bundle\Security\SeamlessMessageAuthenticator
+    rl.seamless_message.controller.default: RusLan\SeamlessMessage\Bundle\Controller\SeamlessMessageController
+    rl.seamless_message.repository.messages: RusLan\SeamlessMessage\Bundle\Doctrine\Repository\MessagesRepository
+    rl.seamless_message.repository.user: RusLan\SeamlessMessage\Bundle\Doctrine\Repository\UserRepository
+    rl.seamless_message.provider.history: RusLan\SeamlessMessage\Bundle\Provider\History\HistoryProvider
+    rl.seamless_message.provider.user: RusLan\SeamlessMessage\Bundle\Provider\User\UserProvider
+
+    #models
+    rl.seamless_message.model.telegram: RusLan\SeamlessMessage\Bundle\Model\Messages\DTO\Telegram\Content
+    rl.seamless_message.model.slack: RusLan\SeamlessMessage\Bundle\Model\Messages\DTO\Slack\Content
+    rl.seamless_message.model.yandex: RusLan\SeamlessMessage\Bundle\Model\Messages\DTO\Yandex\Content
