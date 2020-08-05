@@ -23,7 +23,10 @@ class SeamlessMessageController extends AbstractController
      */
     protected function getContentToRequest(Request $request, string $source, string $class): ?ContentInterface
     {
-        return ($dataTelegram = $request->request->get($source)) && ($dataTelegram instanceof $class) ? $dataTelegram : null;
+        return ($dataTelegram = $request->request->get($source))
+            && ($dataTelegram instanceof $class)
+            && ($dataTelegram instanceof ContentInterface)
+            ? $dataTelegram : null;
     }
 
     /**

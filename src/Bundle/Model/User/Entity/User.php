@@ -18,31 +18,31 @@ class User implements UserInterface, Timestampable, SoftDeleteable
     use SoftDeleteableEntity;
 
     /** @var int|null */
-    private $id;
+    protected $id;
 
     /** @var string|null */
-    private $accountUid;
+    protected $accountUid;
 
     /** @var string|null */
-    private $username;
+    protected $username;
 
     /** @var string|null */
-    private $language;
+    protected $language;
 
     /** @var array */
-    private $history = [];
+    protected $history = [];
 
     /** @var Message[]|Collection */
-    private $messages;
+    protected $messages;
 
     /** @var bool */
-    private $bot = false;
+    protected $bot = false;
 
     /** @var string|null */
-    private $type;
+    protected $type;
 
     /** @var string */
-    private $botName = '';
+    protected $botName = '';
 
     public function __construct()
     {
