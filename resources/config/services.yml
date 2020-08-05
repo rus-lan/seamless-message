@@ -33,4 +33,4 @@ services:
 
     rl.seamless_message.controller.default:
         class: '%rl.seamless_message.controller.default%'
-        tags: [controller.service_arguments
+        tags: [controller.service_arguments]

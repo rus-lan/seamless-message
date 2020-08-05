@@ -1,0 +1,3 @@
+rl.seamless_message.extra:
+    resource: .
+    type: !php/const \RusLan\SeamlessMessage\Bundle\DependencyInjection\Configuration::name_bundle
