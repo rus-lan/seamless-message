@@ -15,5 +15,4 @@ class SeamlessMessageBundle extends Bundle
     {
         return new SeamlessMessageExtension();
     }
-
 }

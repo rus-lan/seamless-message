@@ -47,6 +47,7 @@
         "scripts-dev": {
             "post-install-cmd": "@post:install:cmd",
             "post-update-cmd": "@post-install-cmd",
+            "git:add": "git add .",
             "post:install:cmd": [
                 "@git:update-hooks"
             ],
