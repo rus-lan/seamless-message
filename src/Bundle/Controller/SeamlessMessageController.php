@@ -94,7 +94,7 @@ class SeamlessMessageController extends AbstractController
             : $this->json([
                 'method' => 'sendMessage',
                 'chat_id' => $user->getAccountUid() ?? null,
-                'text' => $this->renderView('@SeamlessMessageBundle/layout.html.twig'),
+                'text' => $this->renderView('@SeamlessMessageBundle/telegram.html.twig'),
             ], Response::HTTP_OK);
     }
 
@@ -113,7 +113,7 @@ class SeamlessMessageController extends AbstractController
                 'blocks' => [
                     [
                         'type' => 'section',
-                        'text' => $this->renderView('@SeamlessMessageBundle/layout.html.twig'),
+                        'text' => $this->renderView('@SeamlessMessageBundle/slack.html.twig'),
                     ],
                 ],
             ], Response::HTTP_OK);
@@ -131,7 +131,7 @@ class SeamlessMessageController extends AbstractController
             'version' => $data->getVersion(),
             'session' => $data->getSession()->getSource(),
             'response' => [
-                'text' => $this->renderView('@SeamlessMessageBundle/layout.html.twig'),
+                'text' => $this->renderView('@SeamlessMessageBundle/yandex.html.twig'),
                 'end_session' => false,
             ],
         ], Response::HTTP_OK);

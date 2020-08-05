@@ -25,9 +25,56 @@
         "symfony/var-dumper": "^4.1 || ^5.0",
         "symfony/translation": "^4.1 || ^5.0"
     },
+    "require-dev": {
+        "brainmaestro/composer-git-hooks": "^2.8",
+        "friendsofphp/php-cs-fixer": "^2.16",
+        "neronmoon/scriptsdev": "0.1.3",
+        "php-parallel-lint/php-parallel-lint": "^1.2"
+    },
     "autoload": {
         "psr-4": {
             "RusLan\\SeamlessMessage\\": "src/"
+        }
+    },
+    "extra": {
+        "symfony": {
+            "allow-contrib": false,
+            "require": "^4.1 || ^5.0"
+        },
+        "hooks": {
+            "pre-commit": "composer run git:pre-commit"
+        },
+        "scripts-dev": {
+            "post-install-cmd": "@post:install:cmd",
+            "post-update-cmd": "@post-install-cmd",
+            "git:add": "git add .",
+            "post:install:cmd": [
+                "@git:update-hooks"
+            ],
+            "git:pre-commit": [
+                "@test",
+                "@fix:php",
+                "@git:add"
+            ],
+            "git:update-hooks": {
+                "add": "cghooks add -f --lock-dir=${PWD}/var/cghooks",
+                "update": "cghooks update --lock-dir=${PWD}/var/cghooks"
+            },
+            "test:composer": {
+                "lock": "@composer update --no-interaction --no-plugins --no-progress --no-scripts --no-suggest --no-autoloader --ignore-platform-reqs --root-reqs nothing --lock",
+                "platform": "@composer check-platform-reqs"
+            },
+            "test": [
+                "@test:composer",
+                "@test:php"
+            ],
+            "test:php": [
+                "parallel-lint -e php --no-progress --no-colors --blame ${PWD}/src"
+            ],
+            "fix:php": [
+                "php-cs-fixer fix ${PWD}/src",
+                "php-cs-fixer fix ${PWD}/tests"
+            ]
         }
     }
 }

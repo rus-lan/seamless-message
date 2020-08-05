@@ -6,7 +6,7 @@ namespace RusLan\SeamlessMessage\Bundle\Routing;
 use RusLan\SeamlessMessage\Bundle\Controller\SeamlessMessageController;
 use RusLan\SeamlessMessage\Bundle\Doctrine\Type\ChatTypeEnum;
 use RusLan\SeamlessMessage\Bundle\Doctrine\Type\SourceTypeEnum;
-use RusLan\SeamlessMessage\Configurator\DependencyInjection\Configuration;
+use RusLan\SeamlessMessage\Bundle\DependencyInjection\Configuration;
 use Symfony\Component\Config\Loader\Loader;
 use Symfony\Component\Routing\Route;
 use Symfony\Component\Routing\RouteCollection;

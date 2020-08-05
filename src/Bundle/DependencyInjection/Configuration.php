@@ -1,6 +1,6 @@
 <?php
 
-namespace RusLan\SeamlessMessage\Configurator\DependencyInjection;
+namespace RusLan\SeamlessMessage\Bundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
@@ -25,7 +25,6 @@ class Configuration implements ConfigurationInterface
         $rootNode
             ->children()
                 ->arrayNode('bots')
-                    ->useAttributeAsKey('name')
                     ->arrayPrototype()
                         ->children()
                             ->scalarNode('name')
@@ -40,15 +39,16 @@ class Configuration implements ConfigurationInterface
                             ->end()
                             ->scalarNode('default_controller')->end()
                             ->arrayNode('routers')
-                                ->useAttributeAsKey('name')
                                 ->arrayPrototype()
-                                    ->children()
-                                        ->scalarNode('action')
-                                            ->info('Обработчик события')
-                                            ->isRequired()
-                                            ->cannotBeEmpty()
+                                    ->arrayPrototype()
+                                        ->children()
+                                            ->scalarNode('action')
+                                                ->info('Обработчик события')
+                                                ->isRequired()
+                                                ->cannotBeEmpty()
+                                            ->end()
+                                            ->scalarNode('method')->end()
                                         ->end()
-                                        ->scalarNode('method')->end()
                                     ->end()
                                 ->end()
                             ->end()
