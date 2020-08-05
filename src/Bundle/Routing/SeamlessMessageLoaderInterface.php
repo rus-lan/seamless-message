@@ -1,6 +1,5 @@
 <?php
 
-
 namespace RusLan\SeamlessMessage\Bundle\Routing;
 
 use RusLan\SeamlessMessage\Bundle\Controller\SeamlessMessageController;

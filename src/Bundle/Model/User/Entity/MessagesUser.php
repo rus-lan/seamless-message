@@ -11,25 +11,25 @@ class MessagesUser implements Timestampable
     use TimestampableEntity;
 
     /** @var int|null */
-    private $id;
+    protected $id;
 
     /** @var int */
-    private $messageId;
+    protected $messageId;
 
     /** @var User|null */
-    private $user;
+    protected $user;
 
     /** @var int|null */
-    private $reply;
+    protected $reply;
 
     /** @var string|null */
-    private $text;
+    protected $text;
 
     /** @var string */
-    private $type = MessageTypeEnum::type__message;
+    protected $type = MessageTypeEnum::type__message;
 
     /** @var array */
-    private $data = [];
+    protected $data = [];
 
     /**
      * @return int|null

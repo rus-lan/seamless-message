@@ -10,22 +10,22 @@ class Log implements Timestampable
     use TimestampableEntity;
 
     /** @var int|null */
-    private $id;
+    protected $id;
 
     /** @var string */
-    private $userAgent = '';
+    protected $userAgent = '';
 
     /** @var string|null */
-    private $ip;
+    protected $ip;
 
     /** @var string|null */
-    private $content;
+    protected $content;
 
     /** @var string|null */
-    private $method;
+    protected $method;
 
     /** @var string */
-    private $url = '';
+    protected $url = '';
 
     /**
      * @return int|null
