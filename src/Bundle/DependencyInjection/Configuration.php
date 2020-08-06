@@ -14,15 +14,8 @@ class Configuration implements ConfigurationInterface
      */
     public function getConfigTreeBuilder()
     {
-        $treeBuilder = new TreeBuilder(self::name_bundle);
-
-        if (\method_exists($treeBuilder, 'getRootNode')) {
-            $rootNode = $treeBuilder->getRootNode();
-        } else {
-            $rootNode = $treeBuilder->root(self::name_bundle);
-        }
-
-        $rootNode
+        ($treeBuilder = new TreeBuilder(self::name_bundle))
+            ->getRootNode()
             ->children()
                 ->arrayNode('bots')
                     ->arrayPrototype()
