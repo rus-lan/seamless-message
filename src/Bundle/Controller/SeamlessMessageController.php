@@ -23,18 +23,17 @@ class SeamlessMessageController extends AbstractController
      */
     protected function getContentToRequest(Request $request, string $source, string $class): ?ContentInterface
     {
-        return ($dataTelegram = $request->request->get($source))
-            && ($dataTelegram instanceof $class)
-            && ($dataTelegram instanceof ContentInterface)
-            ? $dataTelegram : null;
+        return ($data = $request->request->get($source))
+            && ($data instanceof $class)
+            && ($data instanceof ContentInterface)
+            ? $data : null;
     }
 
     /**
      * @param Request $request
-     * @param string $route
      * @return Response
      */
-    final public function defaultAction(Request $request, string $route = SeamlessMessageLoader::DEFAULT_ROUTER_NAME): Response
+    final public function defaultAction(Request $request): Response
     {
         $dataTelegram = $this->getContentToRequest($request, SourceTypeEnum::source__telegram, ContentTelegram::class);
         $dataYandex = $this->getContentToRequest($request, SourceTypeEnum::source__yandex, ContentYandex::class);

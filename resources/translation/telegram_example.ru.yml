@@ -1,0 +1,12 @@
+button:
+    chat:
+        cancel: Отмена # add option 'cancel' for present action (example: '/command_1 cancel')
+        lang: Сменить язык
+        lang_ru: 🇷🇺 Русский
+        lang_en: 🇬🇧 Английский
+route:
+    chat:
+        command_1: Приватная команда 1 # run action MyApp\Controller\Chat\CommandController::command_1
+        command_2: Приватная команда 2 # run action MyApp\Controller\Chat\CommandController::command_1
+    channel:
+        command: Команда в общем чате # run action MyApp\Controller\Channel\CommandController::command
