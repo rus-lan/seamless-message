@@ -19,14 +19,26 @@
         "symfony/translation": "^4.1 || ^5.0"
     },
     "require-dev": {
+        "codeception/codeception": "^4.0",
         "brainmaestro/composer-git-hooks": "^2.8",
         "friendsofphp/php-cs-fixer": "^2.16",
         "neronmoon/scriptsdev": "0.1.3",
-        "php-parallel-lint/php-parallel-lint": "^1.2"
+        "php-parallel-lint/php-parallel-lint": "^1.2",
+        "codeception/module-asserts": "^1.2"
     },
     "autoload": {
         "psr-4": {
             "RusLan\\SeamlessMessage\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "files": [
+            "tests/_support/UnitTester.php"
+        ],
+        "psr-4": {
+            "RusLan\\SeamlessMessage\\Tests\\": "tests/unit",
+            "RusLan\\SeamlessMessage\\Tests\\Helper\\": "tests/_support/Helper",
+            "RusLan\\SeamlessMessage\\Tests\\_generated\\": "tests/_support/_generated"
         }
     },
     "extra": {
@@ -38,11 +50,15 @@
             "pre-commit": "composer run git:pre-commit"
         },
         "scripts-dev": {
+            "codecept": "codecept -c tests/codeception.yml",
+            "codecept:build": "@codecept build -q",
+            "codecept:run": "@codecept run unit --no-rebuild --coverage-html",
             "post-install-cmd": "@post:install:cmd",
             "post-update-cmd": "@post-install-cmd",
             "git:add": "git add .",
             "post:install:cmd": [
-                "@git:update-hooks"
+                "@git:update-hooks",
+                "@codecept:build"
             ],
             "git:pre-commit": [
                 "@test",
@@ -59,7 +75,12 @@
             },
             "test": [
                 "@test:composer",
-                "@test:php"
+                "@test:php",
+                "@test:unit"
+            ],
+            "test:unit": [
+                "@codecept:build",
+                "@codecept:run"
             ],
             "test:php": [
                 "parallel-lint -e php --no-progress --no-colors --blame ${PWD}/src"

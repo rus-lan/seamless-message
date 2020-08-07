@@ -1,0 +1,8 @@
+actor: UnitTester
+report_useless_tests: true
+disallow_test_output: false
+shuffle: true
+modules:
+    enabled:
+        - Asserts
+        - \RusLan\SeamlessMessage\Tests\Helper\Unit

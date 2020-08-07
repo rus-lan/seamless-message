@@ -1,0 +1,17 @@
+namespace: RusLan\SeamlessMessage\Tests
+shuffle: true
+report_useless_tests: true
+disallow_test_output: false
+actor_suffix: Tester
+paths:
+    tests: ./
+    output: _output
+    data: _data
+    support: _support
+coverage:
+    enabled: true
+    include:
+        - ../src/*
+extensions:
+    enabled:
+        - Codeception\Extension\RunFailed
